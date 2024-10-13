@@ -14,7 +14,7 @@ export default class Board {
     for (let i = 0; i < 3; i++) {
       tiles[i] = [];
       for (let j = 0; j < 3; j++) {
-        tiles[i][j] = undefined;
+        tiles[i][j] = {value: '', x: i, y: j};
       }
     }
     return tiles;
@@ -67,13 +67,13 @@ export default class Board {
   }
 
   makeMark(x, y) {
-    if (this.tiles[x][y] !== undefined) {
-      return
-    } else {
+    if (this.tiles[x][y].value === '') {
       this.tiles[x][y] = new Mark(x, y, this.pXTurn ? 'X' : 'O');
       this.markCount++;
       this.checkWin();
       this.pXTurn = !this.pXTurn;
     }
+    return this.tiles
   }
+  
 }
